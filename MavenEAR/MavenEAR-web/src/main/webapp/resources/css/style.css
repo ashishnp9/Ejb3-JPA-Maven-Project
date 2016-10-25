@@ -1,0 +1,50 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	background-color:#6e6e6e;
+	width:90%;
+	height:50px;
+	margin:auto;
+	font-family:'Open Sans', sans-serif;
+}
+
+#header, #footer{
+	color:#ffffff;
+}
+
+#content {
+	background:#ffffff;
+	padding:2%;
+}
+
+h1 {
+	font-weight: 100;
+	font-size: 30px;
+	line-height: 40px;
+}
+
+.customer-table {
+	background:#ffffff;
+	border:1px solid #c0c0c0;
+	width:100%; 
+	font-family:'Open Sans', sans-serif; 
+	text-align:center;
+}
+
+
+.viewTable {
+	background:#ffffff;
+	border:1px solid #c0c0c0;
+	width:100%; 
+	font-family:'Open Sans', sans-serif; 
+}
+
+.viewTable .column1 { width: 15%; }
+
+.navTable {
+	margin-top: 20px;
+}
+
+.action a {
+	padding:10px;
+}

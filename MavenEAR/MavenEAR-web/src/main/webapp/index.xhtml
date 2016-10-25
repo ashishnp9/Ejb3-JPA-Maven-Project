@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition template="/WEB-INF/template/template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<ui:define name="metadata">
+	    <f:metadata>
+			<f:event listener="#{customerBean.loadCustomers}" type="preRenderView"></f:event>
+		</f:metadata>
+	</ui:define>
+	
+    <ui:define name="title">Main Page</ui:define>
+	
+	<ui:define name="content">
+		<h:messages globalOnly="true" errorStyle="color: red" infoStyle="color: green" layout="table" />
+		<h1>Customer List</h1>
+		
+	   	<h:form>
+		<h:dataTable id="customer-table" class="customer-table" value="#{customerBean.customerList}" 
+					 var="customer" rules="all" cellpadding="4" cellspacing="0">			 
+		
+			<f:facet name="header">
+			  <h:outputText value="Customer List" />
+			</f:facet> 
+			
+			<h:column>
+			  <f:facet name="header">
+			  <h:outputText value="Customer Id" />
+			  </f:facet> 
+			   <h:outputText value="#{customer.customerId}" />
+			</h:column>
+			
+			<h:column>
+			  <f:facet name="header">
+			  <h:outputText value="Name"/>
+			  </f:facet> 
+			   <h:outputText value="#{customer.name}"  />
+			</h:column>						
+			
+			<h:column>
+			  <f:facet name="header">
+			  <h:outputText value="Email"/>
+			  </f:facet>
+			   <h:outputText value="#{customer.email}"  />
+			</h:column>
+			
+			<h:column>
+			  <f:facet name="header">
+			  <h:outputText value="Address"/>
+			  </f:facet>
+			   <h:outputText value="#{customer.address}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">
+			 		<h:outputText value="Action"/>
+			  	</f:facet>
+			  	<h:panelGroup class="action" >
+					<h:commandLink value="Delete" action="#{customerBean.deleteCustomer(customer)}" />
+					
+					<h:link outcome="view" value="View" includeViewParams="true">
+	       				<f:param name="customerId" value="#{customer.customerId}"></f:param>
+	       			</h:link>
+	       			
+	       			<h:link outcome="edit" value="Edit" includeViewParams="true">
+	       				<f:param name="customerId" value="#{customer.customerId}"></f:param>
+	       			</h:link>
+				</h:panelGroup>
+			</h:column>
+		</h:dataTable>
+		<h:panelGrid styleClass="navTable">
+			<h:link outcome="create" value="Create New Customer" />
+		</h:panelGrid>
+		</h:form>
+	</ui:define>
+	
+</ui:composition>

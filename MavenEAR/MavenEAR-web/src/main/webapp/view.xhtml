@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    template="/WEB-INF/template/template.xhtml">
+    
+    <ui:define name="metadata">
+	    <f:metadata>
+			<f:viewParam name="customerId" value="#{customerBean.customer.customerId}" />
+			<f:event listener="#{customerBean.findCustomer}" type="preRenderView"></f:event>
+		</f:metadata>
+	</ui:define>
+    
+    <ui:define name="content">
+    	
+    	<h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+        <h1>Customer Details</h1>
+        
+    	<h:form>
+	    	<h:panelGrid columns="2" 
+	    				 rules="all" 
+	    				 styleClass="viewTable" 
+	    				 columnClasses="column1, column2" 
+       					 rowClasses="oddRow, evenRow" 
+	    				 cellspacing="0" 
+	    				 cellpadding="2" >
+	    				    		
+	    		<h:outputText value="Customer_Id:" />    		
+	    		<h:outputText value="#{customerBean.customer.customerId}"/>
+	    		<h:outputText value="Name:"  />
+	    		<h:outputText value="#{customerBean.customer.name}" />
+	    		<h:outputText value="Email:"  />
+	    		<h:outputText value="#{customerBean.customer.email}" />
+	    		<h:outputText value="Address:"  />
+	    		<h:outputText value="#{customerBean.customer.address}" />
+	    	</h:panelGrid>
+	    	<h:commandButton action="#{customerBean.deleteCustomer(customerBean.customer)}" value="Destroy" />
+	    	
+	    	<h:panelGrid styleClass="navTable">
+	    		<h:link outcome="edit" value="Edit" includeViewParams="true">
+       				<f:param name="customertId" value="#{customerBean.customer.customerId}"></f:param>
+       			</h:link>
+       			<h:link outcome="create" value="Create New Customer" />
+       			<h:link outcome="index" value="List Customers" />
+       			
+	    	</h:panelGrid>
+    	</h:form>
+    </ui:define>
+</ui:composition>
